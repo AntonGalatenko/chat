@@ -6,6 +6,7 @@ public class Messages {
 
     private static Messages msg;
     private ArrayList<Message> msgList = new ArrayList<Message>();
+    private int n = 0;
 
     private Messages(){
     }
@@ -28,6 +29,11 @@ public class Messages {
     }
 
     public void add(Message message) {
+        n++;
         msgList.add(message);
+    }
+
+    public int getMessageNumber(){
+        return n;
     }
 }

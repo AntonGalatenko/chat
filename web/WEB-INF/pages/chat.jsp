@@ -20,12 +20,10 @@
                 $("#submit").click();
             }
             })
-            
-           
-            getMsg(0);
+                       
+            //getMsg(n);
 
         });
-
     </script>
 
     <script type="text/javascript">

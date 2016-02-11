@@ -5,6 +5,8 @@ import com.toxa.spring.ajax.chat.domain.Messages;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+
 @org.springframework.stereotype.Controller
 public class Controller {
 
@@ -23,8 +25,7 @@ public class Controller {
     }
 
     @RequestMapping(value = "getMsg/{n}")
-    public @ResponseBody String getMsg(@PathVariable int n){
-        System.out.println("HI Man. You are the best ;" + ++n);
-        return "HI Man. You are the best ;)" + n;
+    public @ResponseBody ArrayList<Message> getMsg(@PathVariable int n){
+        return msg.get(n);
     }
 }
