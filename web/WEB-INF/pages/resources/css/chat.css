@@ -115,6 +115,10 @@
     border-bottom: 1px solid #ddd;
 }
 
+table {
+    width: 1200px;
+    height: 400px;
+}
 
 body::-webkit-scrollbar {
     width: 12px;

@@ -1,11 +1,10 @@
 package com.toxa.spring.ajax.chat.controller;
 
+import com.toxa.spring.ajax.chat.domain.Distributor;
 import com.toxa.spring.ajax.chat.domain.Message;
 import com.toxa.spring.ajax.chat.domain.Messages;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -25,7 +24,17 @@ public class Controller {
     }
 
     @RequestMapping(value = "getMsg/{n}")
-    public @ResponseBody ArrayList<Message> getMsg(@PathVariable int n){
-        return msg.get(n);
+    public @ResponseBody String getMsg(@PathVariable int n){
+//        System.out.println("You are cool man ;) " + n);
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        return "You are cool man ;) " + n;
+
+        System.out.println("get " + n);
+        String result = new Distributor().get(n);
+        return result;
     }
 }

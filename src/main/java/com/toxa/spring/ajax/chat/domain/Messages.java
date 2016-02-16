@@ -6,7 +6,7 @@ public class Messages {
 
     private static Messages msg;
     private ArrayList<Message> msgList = new ArrayList<Message>();
-    private int n = 0;
+//    private int n = 0;
 
     private Messages(){
     }
@@ -21,19 +21,20 @@ public class Messages {
         return msgList;
     }
 
-    public ArrayList<Message> get(int n){
+    public Message get(int n){
         ArrayList<Message> result = new ArrayList<Message>();
-        result.addAll(msgList.subList(--n, msgList.size()));
+//        result.addAll(msgList.subList(--n, msgList.size()));
 //                (ArrayList<Message>) msgList.subList(n, msgList.size());
-        return result;
+        return msgList.get(--n);
     }
 
     public void add(Message message) {
-        n++;
+//        n++;
+//        new Distributor().notifyAll();
         msgList.add(message);
     }
 
     public int getMessageNumber(){
-        return n;
+        return msgList.size();
     }
 }
