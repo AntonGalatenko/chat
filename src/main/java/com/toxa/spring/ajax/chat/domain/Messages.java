@@ -1,12 +1,13 @@
 package com.toxa.spring.ajax.chat.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Messages {
 
     private static Messages msg;
+    private List<Thread> thrList = new ArrayList<Thread>();
     private ArrayList<Message> msgList = new ArrayList<Message>();
-//    private int n = 0;
 
     private Messages(){
     }
@@ -22,19 +23,29 @@ public class Messages {
     }
 
     public Message get(int n){
-        ArrayList<Message> result = new ArrayList<Message>();
-//        result.addAll(msgList.subList(--n, msgList.size()));
-//                (ArrayList<Message>) msgList.subList(n, msgList.size());
         return msgList.get(--n);
     }
 
     public void add(Message message) {
-//        n++;
-//        new Distributor().notifyAll();
         msgList.add(message);
+        notifyMsgList();
     }
 
     public int getMessageNumber(){
         return msgList.size();
+    }
+
+    public void addThrList(Thread thr) {
+        thrList.add(thr);
+    }
+
+    public void notifyMsgList(){
+        for(Thread thr: thrList){
+            synchronized (thr){
+                thr.notifyAll();
+            }
+        }
+
+        thrList.clear();
     }
 }
