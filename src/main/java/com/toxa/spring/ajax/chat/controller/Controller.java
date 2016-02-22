@@ -11,7 +11,17 @@ public class Controller {
 
     Messages msg = Messages.getInstance();
 
-    @RequestMapping(value = {"/", "/index**"})
+    @RequestMapping(value = {"/", "login**"})
+    public ModelAndView loginPage(){
+        return new ModelAndView("login");
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public ModelAndView redirectIndexPage(@RequestParam String user){
+        return new ModelAndView("chat", "author", user);
+    }
+
+    @RequestMapping(value = "/index**")
     public ModelAndView indexPage(){
         return new ModelAndView("chat");
     }

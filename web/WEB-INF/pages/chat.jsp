@@ -16,9 +16,9 @@
             var n = 1;
 
             $("#msg").keydown(function (e){
-            if(e.ctrlKey && e.keyCode == 13){
-                $("#submit").click();
-            }
+                if(e.ctrlKey && e.keyCode == 13){
+                    $("#submit").click();
+                }
             })
                        
             getMsg(n);
@@ -71,7 +71,7 @@
                 <a href="" class="btn  col-lg-6  send-message-btn pull-right" role="button"><i class="fa fa-plus"></i> New Message</a>
             </div>
         </div>
-            <input type="text" name="author" id="author" placeholder="Enter your name...">
+            <input type="hidden" name="author" id="author" value="${author}">
         <div class="col-lg-offset-1 col-lg-7">
             <div class="btn-panel btn-panel-msg">
 
