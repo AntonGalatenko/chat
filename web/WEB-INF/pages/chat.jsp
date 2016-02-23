@@ -36,9 +36,10 @@
                 datatype: "JSON",
                 success: function(data){
                     //if(data.users == null)
-                        $("#receivedMsg").append("<tr><td>" + data.msg + "<td><tr>");
+                        //$("#receivedMsg").append("<tr><td>" + data.msg + "<td><tr>");
                     //else
-                    //    list = data.list;
+                        list = data.list;
+                        document.getElementById('listdiv').innerHTML = list;
                 },
                 complete: function(){
                     //if(data.users == null)
@@ -87,7 +88,7 @@
     </div>
     <div class="row">
 
-        <div class="conversation-wrap col-lg-3">
+        <div id = "listdiv" class="conversation-wrap col-lg-3">
 
 
             <c:forEach items="${list}" var="user">

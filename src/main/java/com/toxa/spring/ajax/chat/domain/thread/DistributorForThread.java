@@ -23,9 +23,9 @@ public class DistributorForThread {
                 thr.interrupt();
                 e.printStackTrace();
             }
-//            if(msg.isChangeUsers())
-//                return new SendingObject(null, msg.getUsersList());
-//            else
+            if(msg.isChangeUsers())
+                return new SendingObject(null, msg.getUsersList());
+            else
                 return new SendingObject(msg.get(n).toString(), null);
 
 
