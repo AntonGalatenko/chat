@@ -1,13 +1,14 @@
 package com.toxa.spring.ajax.chat.domain;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Messages {
 
     private static Messages msg;
-    private List<Thread> thrList = new ArrayList<Thread>();
     private ArrayList<Message> msgList = new ArrayList<Message>();
+    private ArrayList<Thread> msgAwaitingList = new ArrayList<Thread>();
+    private ArrayList<String> usersList = new ArrayList<String>();
+    private boolean changeUsers = false;
 
     private Messages(){
     }
@@ -16,10 +17,6 @@ public class Messages {
         if(msg == null)
             msg = new Messages();
         return msg;
-    }
-
-    public ArrayList<Message> get() {
-        return msgList;
     }
 
     public Message get(int n){
@@ -35,17 +32,32 @@ public class Messages {
         return msgList.size();
     }
 
-    public void addThrList(Thread thr) {
-        thrList.add(thr);
-    }
-
     public void notifyMsgList(){
-        for(Thread thr: thrList){
+        for(Thread thr : msgAwaitingList){
             synchronized (thr){
                 thr.notifyAll();
             }
         }
 
-        thrList.clear();
+        msgAwaitingList.clear();
+    }
+
+    public void addMsgAwaitingList(Thread thr) {
+        msgAwaitingList.add(thr);
+    }
+
+    public ArrayList<String> getUsersList() {
+        changeUsers = false;
+        return usersList;
+    }
+
+    public void addUsersList(String user) {
+        changeUsers = true;
+        usersList.add(user);
+        notifyMsgList();
+    }
+
+    public boolean isChangeUsers() {
+        return changeUsers;
     }
 }

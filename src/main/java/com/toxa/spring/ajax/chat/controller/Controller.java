@@ -2,6 +2,7 @@ package com.toxa.spring.ajax.chat.controller;
 
 import com.toxa.spring.ajax.chat.domain.Message;
 import com.toxa.spring.ajax.chat.domain.Messages;
+import com.toxa.spring.ajax.chat.domain.SendingObject;
 import com.toxa.spring.ajax.chat.domain.thread.DistributorForThread;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +19,7 @@ public class Controller {
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ModelAndView redirectIndexPage(@RequestParam String user){
+        msg.addUsersList(user);
         return new ModelAndView("chat", "author", user);
     }
 
@@ -34,10 +36,10 @@ public class Controller {
     }
 
     @RequestMapping(value = "getMsg/{n}")
-    public @ResponseBody String getMsg(@PathVariable int n){
+    public @ResponseBody SendingObject getMsg(@PathVariable int n){
 
         System.out.println("get " + n);
-        String result = new DistributorForThread().get(n);
+        SendingObject result = new DistributorForThread().getMsg(n);
 
 
         return result;
